@@ -16,6 +16,7 @@
             background: linear-gradient(to bottom, #d3d3d3, #ffffff);
             color: #333;
             padding-top: 60px;
+            overflow-x: hidden;
         }
 
         .header {
@@ -55,11 +56,6 @@
             cursor: pointer;
             overflow: hidden;
             transition: all 0.3s ease;
-            max-height: 150px;
-        }
-
-        .panel.expanded {
-            max-height: 500px;
         }
 
         .panel h2 {
@@ -67,6 +63,7 @@
             color: #333;
         }
 
+        /* Layout Grid */
         #panel1 { grid-area: panel1; }
         #panel2 { grid-area: panel2; }
         #panel3 { grid-area: panel3; }
@@ -89,6 +86,37 @@
             border: none;
         }
 
+        /* Fullscreen and Overlay Styles */
+        .panel.fullscreen {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90vw;
+            height: 90vh;
+            z-index: 1001;
+            overflow-y: auto;
+            padding: 30px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
         @media (max-width: 768px) {
             .container {
                 grid-template-areas: 
@@ -107,8 +135,10 @@
 <body>
     <div class="header">Painel de Controle</div>
 
+    <div class="overlay" id="overlay" onclick="closePanel()"></div>
+
     <div class="container">
-        <div id="panel1" class="panel" onclick="toggleExpand(this)">
+        <div id="panel1" class="panel" onclick="toggleFullscreen(this)">
             <h2>Painel 1 - Informações do Carro</h2>
             <p>Velocidade Atual: 90 km/h</p>
             <p>Autonomia Restante: 220 km</p>
@@ -120,14 +150,14 @@
             <iframe src="https://embed.waze.com/iframe?zoom=14&lat=-23.555771&lon=-46.639557&ct=livemap" allowfullscreen></iframe>
         </div>
 
-        <div id="panel2" class="panel" onclick="toggleExpand(this)">
+        <div id="panel2" class="panel" onclick="toggleFullscreen(this)">
             <h2>Painel 2 - Distância Entre Postos</h2>
             <p>Distância até o próximo posto: 45 km</p>
             <p>Distância desde o último posto: 30 km</p>
             <p>Distância média entre postos: 40 km</p>
         </div>
 
-        <div id="panel3" class="panel" onclick="toggleExpand(this)">
+        <div id="panel3" class="panel" onclick="toggleFullscreen(this)">
             <h2>Painel 3 - Consumo de Energia</h2>
             <p>Consumo Atual: 18 kWh/100 km</p>
             <p>Consumo Médio: 16 kWh/100 km</p>
@@ -135,7 +165,7 @@
             <p>Carga Restante: 63.75 kWh</p>
         </div>
 
-        <div id="panel4" class="panel" onclick="toggleExpand(this)">
+        <div id="panel4" class="panel" onclick="toggleFullscreen(this)">
             <h2>Painel 4 - Informações Adicionais</h2>
             <p>Pressão dos Pneus: 32 PSI</p>
             <p>Temperatura Externa: 24°C</p>
@@ -145,8 +175,17 @@
     </div>
 
     <script>
-        function toggleExpand(panel) {
-            panel.classList.toggle('expanded');
+        function toggleFullscreen(panel) {
+            panel.classList.toggle('fullscreen');
+            document.getElementById("overlay").classList.toggle("active");
+        }
+
+        function closePanel() {
+            const expandedPanel = document.querySelector('.panel.fullscreen');
+            if (expandedPanel) {
+                expandedPanel.classList.remove('fullscreen');
+            }
+            document.getElementById("overlay").classList.remove("active");
         }
     </script>
 </body>
