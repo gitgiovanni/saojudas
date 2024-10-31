@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página com Painéis de Cálculo e Waze Widget</title>
+    <title>Painel de Controle</title>
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-        
+
         body {
             font-family: Arial, sans-serif;
             display: flex;
@@ -18,9 +18,20 @@
             align-items: center;
             flex-direction: column;
             min-height: 100vh;
-            background-color: #f3f3f3;
+            background: linear-gradient(to bottom, #cccccc, #ffffff);
+            color: #333;
         }
-        
+
+        .header {
+            background-color: #666;
+            color: #fff;
+            width: 100%;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
         .container {
             display: grid;
             grid-template-areas: 
@@ -39,7 +50,7 @@
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
-            font-size: 1.2em;
+            font-size: 1em;
         }
 
         #panel1 { grid-area: panel1; }
@@ -76,14 +87,43 @@
     </style>
 </head>
 <body>
+    <div class="header">Painel de Controle</div>
+
     <div class="container">
-        <div id="panel1" class="panel">Painel de Cálculo 1</div>
+        <div id="panel1" class="panel">
+            <h2>Painel 1 - Informações do Carro</h2>
+            <p>Velocidade Atual: 90 km/h</p>
+            <p>Autonomia Restante: 220 km</p>
+            <p>Estado da Bateria: 85%</p>
+            <p>Temperatura do Motor: 70°C</p>
+        </div>
+
         <div class="waze-widget">
             <iframe src="https://embed.waze.com/iframe?zoom=14&lat=-23.555771&lon=-46.639557&ct=livemap" allowfullscreen></iframe>
         </div>
-        <div id="panel2" class="panel">Painel de Cálculo 2</div>
-        <div id="panel3" class="panel">Painel de Cálculo 3</div>
-        <div id="panel4" class="panel">Painel de Cálculo 4</div>
+
+        <div id="panel2" class="panel">
+            <h2>Painel 2 - Distância Entre Postos</h2>
+            <p>Distância até o próximo posto: 45 km</p>
+            <p>Distância desde o último posto: 30 km</p>
+            <p>Distância média entre postos: 40 km</p>
+        </div>
+
+        <div id="panel3" class="panel">
+            <h2>Painel 3 - Consumo de Energia</h2>
+            <p>Consumo Atual: 18 kWh/100 km</p>
+            <p>Consumo Médio: 16 kWh/100 km</p>
+            <p>Capacidade da Bateria: 75 kWh</p>
+            <p>Carga Restante: 63.75 kWh</p>
+        </div>
+
+        <div id="panel4" class="panel">
+            <h2>Painel 4 - Informações Adicionais</h2>
+            <p>Pressão dos Pneus: 32 PSI</p>
+            <p>Temperatura Externa: 24°C</p>
+            <p>Data da Última Manutenção: 01/10/2024</p>
+            <p>Kilometragem Total: 12,400 km</p>
+        </div>
     </div>
 </body>
 </html>
