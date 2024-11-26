@@ -11,29 +11,39 @@
             padding: 0;
         }
 
-       body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to bottom, #dbeafe, #ffffff);
-    color: #333;
-    padding-top: 60px;
-    overflow-x: hidden;
+ /* Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
+body {
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, sans-serif;
+    background: linear-gradient(120deg, #f3e8ff, #ffffff);
+    color: #444;
+    padding-top: 80px;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Cabeçalho */
 .header {
-    background-color: #1e3a8a;
+    background-color: #4b0082;
     color: #fff;
-    width: 100%;
     text-align: center;
     padding: 15px 0;
-    font-size: 2em;
-    font-weight: bold;
+    font-size: 2rem;
+    font-weight: 600;
     position: fixed;
     top: 0;
     left: 0;
+    width: 100%;
     z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
+/* Container */
 .container {
     display: grid;
     grid-template-areas:
@@ -41,56 +51,55 @@
         "panel3 waze panel4";
     grid-gap: 20px;
     max-width: 1200px;
-    width: 100%;
     padding: 20px;
     margin: 0 auto;
 }
 
+/* Painéis */
 .panel {
-    background-color: #ffffff;
+    background: #ffffff;
     border: 1px solid #ddd;
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-size: 1em;
-    cursor: pointer;
-    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
 
 .panel:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .panel h2 {
-    font-size: 1.6em;
-    color: #1e3a8a;
+    font-size: 1.6rem;
+    color: #4b0082;
     margin-bottom: 10px;
+    font-weight: 600;
 }
 
 .panel p {
-    font-size: 1em;
-    line-height: 1.6;
-    color: #4b5563;
+    font-size: 1rem;
+    color: #555;
 }
 
+/* Área de Waze */
 .waze-widget {
     grid-area: waze;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: #f1f5f9;
+    background-color: #f3f0ff;
     border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 iframe {
     width: 100%;
     height: 450px;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
 /* Tela cheia */
@@ -104,24 +113,18 @@ iframe {
     z-index: 1001;
     overflow-y: auto;
     padding: 40px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    border-radius: 15px;
-    background: linear-gradient(to bottom, #1e3a8a, #2563eb);
-    color: white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(120deg, #4b0082, #6a0dad);
+    color: #fff;
 }
 
 .panel.fullscreen h2 {
-    font-size: 2.5em;
-    color: #f1f5f9;
+    font-size: 2.4rem;
 }
 
 .panel.fullscreen p {
-    font-size: 1.2em;
-    color: #e0f2fe;
-}
-
-.panel.fullscreen .extra-info {
-    color: #dbeafe;
+    font-size: 1.2rem;
+    margin-top: 10px;
 }
 
 /* Overlay */
@@ -153,9 +156,10 @@ iframe {
     }
 
     iframe {
-        height: 350px;
+        height: 300px;
     }
 }
+
     </style>
 </head>
 <body>
